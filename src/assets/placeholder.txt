@@ -1,0 +1,15 @@
+
+    approvalStatus: null,
+    approveReason: null,
+    approverId: null,
+    approveTime: null,
+    createTime: null,
+    updateTime: null,
+    id: null,
+    userId: null,
+    activityId: null,
+    joinTime: null,
+    //
+    userName: null,
+    activityName: null,
+    approverName: null
