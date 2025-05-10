@@ -38,6 +38,7 @@
     "commit:zh": "sa git-commit -l=zh-cn",
     "dev": "vite --mode test",
     "dev:prod": "vite --mode prod",
+    "fix-memory-limit": "cross-env LIMIT=8048 increase-memory-limit",
     "gen-route": "sa gen-route",
     "lint": "eslint . --fix",
     "prepare": "simple-git-hooks",

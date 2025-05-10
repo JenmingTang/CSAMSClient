@@ -1,7 +1,29 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, reactive } from 'vue';
 import { createReusableTemplate } from '@vueuse/core';
+import { c } from 'naive-ui';
 import { $t } from '@/locales';
+import { index } from '@/service/api/csams/home';
+// async function getHomeData() {
+//   const { data } = await index();
+//   console.log(data);
+// }
+const counts = reactive({
+  view_count: 0,
+  participation_count: 0,
+  activity_count: 0,
+  user_count: 0
+});
+const getHomeData = async () => {
+  const { data } = await index();
+  // console.log(data);
+  // 错误
+  // counts = {data};
+  // 一个一个赋值
+  // const { view_count, participation_count, activity_count, user_count } = data;
+  Object.assign(counts, data);
+};
+getHomeData();
 
 defineOptions({
   name: 'CardData'
@@ -18,16 +40,27 @@ interface CardData {
   };
   icon: string;
 }
-
+// const visitCountValue =
 const cardData = computed<CardData[]>(() => [
   {
-    key: 'visitCount',
+    key: 'view_count',
     title: $t('page.home.visitCount'),
-    value: 9725,
+    value: counts.view_count,
     unit: '',
     color: {
       start: '#ec4786',
       end: '#b955a4'
+    },
+    icon: 'ant-design:bar-chart-outlined'
+  },
+  {
+    key: 'participation_count',
+    title: '参与人次',
+    value: counts.participation_count,
+    unit: '',
+    color: {
+      start: '#865ec0',
+      end: '#5144b4'
     },
     icon: 'ant-design:bar-chart-outlined'
   },
@@ -43,15 +76,37 @@ const cardData = computed<CardData[]>(() => [
   //   icon: 'ant-design:money-collect-outlined'
   // },
   {
-    key: 'downloadCount',
-    title: $t('page.home.downloadCount'),
-    value: 970925,
+    key: 'activity_count',
+    title: '活动数量',
+    value: counts.activity_count,
     unit: '',
     color: {
       start: '#56cdf3',
       end: '#719de3'
     },
-    icon: 'carbon:document-download'
+    icon: 'ant-design:bar-chart-outlined'
+  },
+  // {
+  //   key: 'downloadCount',
+  //   title: $t('page.home.downloadCount'),
+  //   value: 970925,
+  //   unit: '',
+  //   color: {
+  //     start: '#56cdf3',
+  //     end: '#719de3'
+  //   },
+  //   icon: 'carbon:document-download'
+  // },
+  {
+    key: 'user_count',
+    title: '用户数量',
+    value: counts.user_count,
+    unit: '',
+    color: {
+      start: '#fcbc25',
+      end: '#f68057'
+    },
+    icon: 'ant-design:bar-chart-outlined'
   }
   // {
   //   key: 'dealCount',

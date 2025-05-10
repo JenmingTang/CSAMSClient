@@ -66,6 +66,12 @@ const {
       width: 64
     },
     {
+      key: 'id',
+      title: 'ID',
+      align: 'center',
+      width: 64
+    },
+    {
       key: 'username',
       title: $t('page.manage.user.userName'),
       align: 'center',

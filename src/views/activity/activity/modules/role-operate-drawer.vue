@@ -13,6 +13,8 @@ import {
 import { deleteLocalFileById, selectLocalFileListByParams } from '@/service/api/csams/file';
 import { selectClubListWithApproved } from '@/service/api/csams/club';
 
+import { useAuth } from '@/hooks/business/auth';
+
 defineOptions({
   name: 'RoleOperateDrawer'
 });
@@ -388,6 +390,7 @@ selectActivityLocationList().then(res => {
 const toPressFn = () => {
   window.open('https://uutool.cn/tinymce/', '_blank');
 };
+const { hasAuth } = useAuth();
 </script>
 
 <template>
@@ -424,7 +427,7 @@ const toPressFn = () => {
           <NSelect v-model:value="model.approverId" :options="options" clearable />
         </NFormItem>
 -->
-        <NFormItem label="图片">
+        <NFormItem v-if="isEdit" label="图片">
           <!-- @on-remove 并不生效？ -->
           <NUpload
             v-model:file-list="imageFileList"
@@ -447,7 +450,7 @@ const toPressFn = () => {
           <!-- <NButton @click="handleUpload">点击我</NButton> -->
         </NFormItem>
 
-        <NFormItem label="附件">
+        <NFormItem v-if="isEdit" label="附件">
           <!--
           @不触发
             @on-finish="onFinish"
@@ -470,10 +473,10 @@ const toPressFn = () => {
           </NUpload>
         </NFormItem>
 
-        <NFormItem label="新闻稿编写工具">
+        <NFormItem v-if="isEdit" label="新闻稿编写工具">
           <NButton type="primary" dashed @click="toPressFn">点击访问</NButton>
         </NFormItem>
-        <NFormItem label="新闻稿">
+        <NFormItem v-if="isEdit" label="新闻稿">
           <NUpload
             v-model:file-list="imageFileList3"
             :action="uploadUrl"
@@ -491,7 +494,7 @@ const toPressFn = () => {
             <NButton>点击上传</NButton>
           </NUpload>
         </NFormItem>
-        <NFormItem label="展示新闻稿">
+        <NFormItem v-if="isEdit" label="展示新闻稿">
           <NUpload
             v-model:file-list="imageFileList4"
             :action="uploadUrl"
@@ -509,11 +512,11 @@ const toPressFn = () => {
             <NButton>点击上传</NButton>
           </NUpload>
         </NFormItem>
-        <NFormItem v-if="isEdit" label="审批状态">
+        <NFormItem v-if="isEdit && hasAuth('BUTTON_APPROVE_ACTIVITY')" label="审批状态">
           <NSelect v-model:value="model.approvalStatus" :options="options2" clearable />
         </NFormItem>
 
-        <NFormItem v-if="isEdit" label="审批原因">
+        <NFormItem v-if="isEdit && hasAuth('BUTTON_APPROVE_ACTIVITY')" label="审批原因">
           <NInput v-model:value="model.approveReason" type="textarea" />
         </NFormItem>
         <!--

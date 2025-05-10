@@ -67,7 +67,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.activity_activity',
         meta: {
           title: 'activity_activity',
-          roles: ['SUPER_ADMIN','CLUB_ADMIN'],
+          roles: ['SUPER_ADMIN', 'CLUB_ADMIN', 'MEMBER'],
           i18nKey: 'route.activity_activity'
         }
       },
@@ -77,8 +77,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.activity_activity-location',
         meta: {
           title: 'activity_activity-location',
-
-          roles: ['SUPER_ADMIN','ACTIVITY_LOCATION'],
+          roles: ['SUPER_ADMIN', 'ACTIVITY_LOCATION'],
           i18nKey: 'route.activity_activity-location'
         }
       },
@@ -88,7 +87,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.activity_activity-member',
         meta: {
           title: 'activity_activity-member',
-          roles: ['SUPER_ADMIN','CLUB_ADMIN','MEMBER'],
+          roles: ['SUPER_ADMIN', 'CLUB_ADMIN', 'MEMBER'],
           i18nKey: 'route.activity_activity-member'
         }
       }
@@ -148,11 +147,6 @@ export const generatedRoutes: GeneratedRoute[] = [
       title: 'club',
       i18nKey: 'route.club',
       icon: 'mdi:list-box',
-
-      /*
-      开放所有子界面，但！！排除全部其它角色
-      */
-      // roles: ['SUPER_ADMIN'],
       order: 2
     },
     children: [
@@ -162,7 +156,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.club_club',
         meta: {
           title: 'club_club',
-          roles: ['SUPER_ADMIN','CLUB_ADMIN'],
+          roles: ['SUPER_ADMIN', 'CLUB_ADMIN', 'MEMBER'],
           i18nKey: 'route.club_club'
         }
       },
@@ -172,7 +166,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.club_club-member',
         meta: {
           title: 'club_club-member',
-          roles: ['SUPER_ADMIN','CLUB_ADMIN','MEMBER'],
+          roles: ['SUPER_ADMIN', 'CLUB_ADMIN', 'MEMBER'],
           i18nKey: 'route.club_club-member'
         }
       }
@@ -369,7 +363,7 @@ export const generatedRoutes: GeneratedRoute[] = [
         component: 'view.info_person',
         meta: {
           title: 'info_person',
-          roles: ['SUPER_ADMIN','CLUB_ADMIN'],
+          roles: ['SUPER_ADMIN', 'CLUB_ADMIN'],
           i18nKey: 'route.info_person'
         }
       }

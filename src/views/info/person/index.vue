@@ -122,6 +122,12 @@ const {
       align: 'center'
     },
     {
+      key: 'username',
+      title: '学工号',
+      align: 'center',
+      minWidth: 100
+    },
+    {
       key: 'realName',
       title: '姓名',
       align: 'center',

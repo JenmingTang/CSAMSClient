@@ -25,7 +25,34 @@ const model: ResetPasswordDTO = reactive({
   confirmPassword: ''
 });
 
+// 密码验证：至少8位，包含字母、数字、特殊字符三种类型
+const validatePassword = (password: string): string => {
+  const hasLetter = /[a-zA-Z]/.test(password);
+  const hasNumber = /[0-9]/.test(password);
+  const hasSymbol = /[^a-zA-Z0-9]/.test(password); // 非字母数字字符
+  const typeCount = (hasLetter ? 1 : 0) + (hasNumber ? 1 : 0) + (hasSymbol ? 1 : 0);
+
+  if (password.length < 8) {
+    return '密码必须至少8位';
+  }
+  if (typeCount < 3) {
+    return '密码必须包含字母、数字和特殊字符中的至少三种类型';
+  }
+  return '';
+};
+
+// 实时验证计算属性
+const confirmPasswordError = computed(() => validatePassword(model.confirmPassword));
+const passwordError = computed(() => validatePassword(model.password));
 async function handleSubmit() {
+  if (!confirmPasswordError.value && !passwordError.value) {
+    // console.log('提交成功:', model);
+    // 这里添加实际提交逻辑
+  } else {
+    // console.log('验证失败');
+    window.$message?.error('学工号（纯数字8/15位）或密码错误（8位且包含字母、数字、特殊字符）！');
+    return;
+  }
   await validate();
   await reset(model);
   // request to reset password

@@ -60,6 +60,12 @@ const {
       align: 'center'
     },
     {
+      key: 'founderId',
+      title: '创建者ID',
+      width: 100,
+      align: 'center'
+    },
+    {
       key: 'name',
       title: '社团名',
       align: 'center',
